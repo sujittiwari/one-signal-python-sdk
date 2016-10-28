@@ -525,7 +525,7 @@ class OneSignalSdk(object):
         }
         return send_request(url, headers=headers, method='POST')
 
-    def create_notification(self, contents, heading='', url='',
+    def create_notification(self, contents=None, heading='', url='',
                             included_segments=('All',), app_id=None, player_ids=None, **kwargs):
         """
         Creates a notification by sending a notification to https://onesignal.com/api/v1/notifications
@@ -548,20 +548,28 @@ class OneSignalSdk(object):
             }
         """
         app_id = app_id if app_id else self.app_id
-        assert app_id and contents
+        assert app_id
         data = {
-            "contents": {"en": contents},
             "app_id": app_id
         }
+        if isinstance(contents, dict):
+            data['contents'] = contents
+        elif contents:
+            data['contents'] = {'en': contents}
         if url and is_valid_url(url):
             data['url'] = url
-        if heading:
-            data['headings'] = {"en": heading}
+        if isinstance(heading, dict):
+            data['headings'] = heading
+        else:
+            data['headings'] = {'en': heading}
 
         if player_ids and isinstance(player_ids, (list, tuple)):
             data['include_player_ids'] = player_ids
         elif isinstance(included_segments, (list, tuple)) and len(included_segments):
             data['included_segments'] = included_segments
+
+        if kwargs:
+            data.update(kwargs)
 
         api_url = self.api_url + "/notifications"
         data = json.dumps(data)
