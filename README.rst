@@ -32,7 +32,7 @@ Once installed, to get started, you can do:
 ::
 
    from onesignalsdk import one_signal_sdk
-   one_signal =  one_signal_sdk.OneSignalSdk(YOUR_APP_ID, AUTH_TOKEN_HERE)
+   one_signal =  one_signal_sdk.OneSignalSdk(AUTH_TOKEN_HERE, YOUR_APP_ID)
    one_signal.get_players(your_basic_auth_key)
 
 Tests
