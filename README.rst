@@ -2,12 +2,12 @@ OneSignal Python SDK
 =====================
 
 A Python SDK for OneSignal (https://onesignal.com/). Documentation for OneSignal API is available at
-https://documentation.onesignal.com/docs/server-api-overview.
+https://documentation.onesignal.com/reference
 
 Obtaining User Rest API key and App REST API key
 -------------------------------------------------
 
-See details here https://documentation.onesignal.com/docs/server-api-overview
+See details here https://documentation.onesignal.com/docs/accounts-and-keys
 
 Installing dependencies
 ------------------------
